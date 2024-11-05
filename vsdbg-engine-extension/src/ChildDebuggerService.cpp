@@ -739,7 +739,7 @@ HRESULT STDMETHODCALLTYPE CChildDebuggerService::OnEmbeddedBreakpointHitReceived
     if(!settings_.skip_initial_breakpoint) return S_OK;
 
     logger_.log(LogLevel::trace, thread->Connection(), L"On OnEmbeddedBreakpointHitReceived (Debugger PID {})\n", GetCurrentProcessId());
-    logger_.log(LogLevel::trace, thread->Connection(), L"On OnEmbeddedBreakpointHitReceived (instruction_address->ModuleInstance()->Name() {})\n", instruction_address->ModuleInstance()->Name());
+    logger_.log(LogLevel::trace, thread->Connection(), L"On OnEmbeddedBreakpointHitReceived (instruction_address->ModuleInstance()->Name() {})\n", instruction_address->ModuleInstance()->Name()->Value());
 
     // The initial breakpoint is in ntdll.dll!LdrpDoDebuggerBreak()
     if(DkmString::CompareOrdinalIgnoreCase(instruction_address->ModuleInstance()->Name(), L"ntdll.dll") != 0) return S_OK;
